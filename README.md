@@ -4,8 +4,36 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2016/17
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Za temo sem si izbral visokošolstvo med izbranimi državami. Analiziral bom koliko ljudi v posamezni državi v posameznih letih konča diplomski, podiplomski/magistrjski študij in pa doktorat. Za posamezno državo bom pogledal njihov BDP v posameznih letih, število prebivalcev v posameznih državah in pa kolikšen delež premoženja država namenja šolstvu. Sproti bom poiskusil najti še dodatne faktorje, ki bi jih lahko vključil v analizo, s tem mislim faktorje, ki bi lahko vplivali na večje/manjše število ljudi z visokošolsko izobrazbo. 
+
+Tabela 1
+
+* prvi stolpec država
+* drugi stolpec leto
+* tretji stolpec število ljudi, ki so v tem letu končali diplomski študij
+* tretji stolpec število ljudi, ki so v tem letu končali podiplomski študij/magisterij
+* tretji stolpec število ljudi, ki so v tem letu končali doktorat
+
+Tabela 2
+
+* prvi stolpec država
+* drugi stolpec leto
+* BDP države v izbranem letu
+
+Tabela 3 
+
+* prvi stolpec država
+* drugi stolpec leto 
+* število prebivalcev v tem letu 
+
+Tabela 4
+
+* prvi stolpec država
+* drugi stolpec leto
+* delež premoženja, ki ga država namenja šolstvu
+
+Viri so iz Eurostata, Wikipedije in worldbanka. 
+
 
 ## Program
 
