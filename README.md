@@ -10,10 +10,7 @@ Tabela 1
 
 * prvi stolpec država
 * drugi stolpec leto
-* tretji stolpec število ljudi, ki so v tem letu končali diplomski študij
-* tretji stolpec število ljudi, ki so v tem letu končali podiplomski študij/magisterij
-* tretji stolpec število ljudi, ki so v tem letu končali doktorat
-
+* tretji stolpec tip končanega študija
 Tabela 2
 
 * prvi stolpec država
