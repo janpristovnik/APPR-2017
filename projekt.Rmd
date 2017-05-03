@@ -21,7 +21,7 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Za temo sem si izbral visokošolstvo med izbranimi državami. Cilj projekta je dobiti pregled, koliko ljudi je v izbranih državah v izbranih letih končalo različne visokošolske stopnje izobraževanja in to primerjati z različnimi podatki, ki bi lahko vplivali na dosežene rezultate. S tem mislim BDP države, denar, ki ga država nameni šolstvu, število ljudi v državi. 
 
 ***
 
@@ -30,9 +30,42 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
+Z Eurostata sem uvozil podatke o tem koliko ljudi, je v posameznih izbranih državah v letih 2013,2014,2015 končalo diplomski, magistrski in doktorski študij. Podatki so bili v CSV obliki. 
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Poglejmo si začetka obeh uvoženih razpredelnic.
+Tabela v urejeni obliki je sestavljena iz 4 stolpcev.
+
+1.stolpec : Leto (številska spremenljivka) 2013-2015
+2.stolpec : Država (imenska spremenljivka)
+3.stolpec : Stopnja izobrazbe (imenska spremenljivka) : diplomski študij, magistrski študij, doktorski študij
+4.stolpec : Število (številska spremenljivka) : koliko ljudi je v izbranem letu, izbrani državi, opravilo izbrano stopnjo
+izobrazbe.
+
+Iz Eurostata sem nato uvozil podatke o BDPju posamezne države v letih 2013,2014,2015. Podatki so bili v CSV obliki.
+
+Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
+
+1.stolpec : Leto(Številska spremenljivka) 2013-2015
+2.stolpec : Država(imenska spremenljivka)
+3.stolpec : Miljoni evrov (BDP posamezne države v izbranem letu v miljonih evrov) (Številska spremenljivka)
+
+Iz Eurostata sem nato uvozil podatke o številu prebivalcev v posameznih državah v letih 2013,2014,2015. Podatki so bili 
+v CSV obliki. 
+
+Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
+
+1.stolpec : Leto(Številska spremenljivka) 2013-2015
+2.stolpec : Država(imenska spremenljivka)
+3.stolpec : Stevilo(Številska spremenljivka) Število ljudi v posamezni državi v posameznem letu
+
+Iz Eurostata sem nato uvozil podatke o deležu BDPja, ki ga država nameni za šolstvo. Podatki so bili v HTML obliki.
+
+Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
+
+1.stolpec : Drzava
+2.stolpec : Leto 2013-2015
+3.stolpec : % BDP za izobrazbo
+
+
 
 ```{r razpredelnice}
 kable(head(druzine))
