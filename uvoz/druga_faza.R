@@ -9,15 +9,15 @@ BDP["3"] <- NULL
 
 View(BDP)
 
-data <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja izobrazbe", "Stevilo", "5"),skip=1, na = ":",
+Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja izobrazbe", "Stevilo", "5"),skip=1, na = ":",
                  locale = locale(encoding = "Windows-1250"))
 
-data["1"] <- NULL
-data["2"] <- NULL
-data["3"] <- NULL
-data["4"] <- NULL
-data["5"] <- NULL
-View(data)
+Tip_izobrazevanja["1"] <- NULL
+Tip_izobrazevanja["2"] <- NULL
+Tip_izobrazevanja["3"] <- NULL
+Tip_izobrazevanja["4"] <- NULL
+Tip_izobrazevanja["5"] <- NULL
+View(Tip_izobrazevanja)
 
 stevilo_prebivalcev <- read_csv("podatki/demo_gind_1_Data.csv", col_names = c("Leto", "Drzava", "1", "Stevilo", "2"), skip = 1)
 stevilo_prebivalcev["1"] <- NULL
