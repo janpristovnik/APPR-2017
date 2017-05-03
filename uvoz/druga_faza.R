@@ -1,6 +1,6 @@
 
 library(readr)
-BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni evrov", "3"),skip=1, na = ":",
+BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni_evrov", "3"),skip=1, na = ":",
                 locale = locale(encoding = "Windows-1250"))
 
 BDP["1"] <- NULL
@@ -9,7 +9,7 @@ BDP["3"] <- NULL
 
 View(BDP)
 
-Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja izobrazbe", "Stevilo", "5"),skip=1, na = ":",
+Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja_izobrazbe", "Stevilo", "5"),skip=1, na = ":",
                  locale = locale(encoding = "Windows-1250"))
 
 Tip_izobrazevanja["1"] <- NULL
@@ -36,7 +36,8 @@ colnames(delez.za.izobrazevanje) <- c("Drzava", 2013:2015)
 
 delez.za.izobrazevanje.tidy <- melt(delez.za.izobrazevanje, id.vars="Drzava", measure.vars = names(delez.za.izobrazevanje)[-1], variable.name = "leto", value.name = "delez BDPja namenjen za izobrazevanje",na.rm = TRUE)
 
-colnames(delez.za.izobrazevanje.tidy)<- c("Drzava", "Leto", "% BDP za izobrazbo")
+colnames(delez.za.izobrazevanje.tidy)<- c("Drzava", "Leto", "delez_BDP_za_izobrazbo")
+
 View(delez.za.izobrazevanje.tidy)
 
 
