@@ -34,36 +34,36 @@ Z Eurostata sem uvozil podatke o tem koliko ljudi, je v posameznih izbranih drž
 
 Tabela v urejeni obliki je sestavljena iz 4 stolpcev.
 
-1.stolpec : Leto (številska spremenljivka) 2013-2015
-2.stolpec : Država (imenska spremenljivka)
-3.stolpec : Stopnja izobrazbe (imenska spremenljivka) : diplomski študij, magistrski študij, doktorski študij
-4.stolpec : Število (številska spremenljivka) : koliko ljudi je v izbranem letu, izbrani državi, opravilo izbrano stopnjo
+*1.stolpec : Leto (številska spremenljivka) 2013-2015
+*2.stolpec : Država (imenska spremenljivka)
+*3.stolpec : Stopnja izobrazbe (imenska spremenljivka) : diplomski študij, magistrski študij, doktorski študij
+*4.stolpec : Število (številska spremenljivka) : koliko ljudi je v izbranem letu, izbrani državi, opravilo izbrano stopnjo
 izobrazbe.
 
 Iz Eurostata sem nato uvozil podatke o BDPju posamezne države v letih 2013,2014,2015. Podatki so bili v CSV obliki.
 
 Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
-1.stolpec : Leto(Številska spremenljivka) 2013-2015
-2.stolpec : Država(imenska spremenljivka)
-3.stolpec : Miljoni evrov (BDP posamezne države v izbranem letu v miljonih evrov) (Številska spremenljivka)
+*1.stolpec : Leto(Številska spremenljivka) 2013-2015
+*2.stolpec : Država(imenska spremenljivka)
+*3.stolpec : Miljoni evrov (BDP posamezne države v izbranem letu v miljonih evrov) (Številska spremenljivka)
 
 Iz Eurostata sem nato uvozil podatke o številu prebivalcev v posameznih državah v letih 2013,2014,2015. Podatki so bili 
 v CSV obliki. 
 
 Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
-1.stolpec : Leto(Številska spremenljivka) 2013-2015
-2.stolpec : Država(imenska spremenljivka)
-3.stolpec : Stevilo(Številska spremenljivka) Število ljudi v posamezni državi v posameznem letu
+*1.stolpec : Leto(Številska spremenljivka) 2013-2015
+*2.stolpec : Država(imenska spremenljivka)
+*3.stolpec : Stevilo(Številska spremenljivka) Število ljudi v posamezni državi v posameznem letu
 
 Iz Eurostata sem nato uvozil podatke o deležu BDPja, ki ga država nameni za šolstvo. Podatki so bili v HTML obliki.
 
 Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
-1.stolpec : Drzava
-2.stolpec : Leto 2013-2015
-3.stolpec : % BDP za izobrazbo
+*1.stolpec : Drzava
+*2.stolpec : Leto 2013-2015
+*3.stolpec : % BDP za izobrazbo
 
 
 
