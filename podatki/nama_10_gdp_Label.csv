@@ -1,8 +1,8 @@
-"DATASET: Pupils and students enrolled by education level, sex, type of institution and intensity of participation [educ_uoe_enra01]"
+"DATASET: GDP and main components (output, expenditure and income) [nama_10_gdp]"
 
-"LAST UPDATE: 28.04.17 07:05:14"
+"LAST UPDATE: 02.05.17 20:15:56"
 
-"EXTRACTION DATE: 02.05.17 13:41:25"
+"EXTRACTION DATE: 02.05.17 23:29:25"
 
 "SOURCE OF DATA: Eurostat"
 
@@ -44,26 +44,18 @@
 "Liechtenstein"
 "Norway"
 "Switzerland"
+"Montenegro"
 "Former Yugoslav Republic of Macedonia, the"
+"Albania"
 "Serbia"
 "Turkey"
+"Kosovo (under United Nations Security Council Resolution 1244/99)"
 
 "UNIT"
-"Number"
+"Current prices, million euro"
 
-"WORKTIME"
-"Total"
-
-"SECTOR"
-"Total"
-
-"SEX"
-"Total"
-
-"ISCED11"
-"Bachelor's or equivalent level"
-"Master's or equivalent level"
-"Doctoral or equivalent level"
+"NA_ITEM"
+"Gross domestic product at market prices"
 
 "No footnotes available"
 
