@@ -23,4 +23,5 @@ stevilo_prebivalcev <- read_csv("podatki/demo_gind_1_Data.csv", col_names = c("L
 stevilo_prebivalcev["1"] <- NULL
 stevilo_prebivalcev["2"] <- NULL
 View(stevilo_prebivalcev)
+
  
