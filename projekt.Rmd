@@ -28,7 +28,7 @@ Za temo sem si izbral visokošolstvo med izbranimi državami. Cilj projekta je d
 # Obdelava, uvoz in čiščenje podatkov
 
 ```{r uvoz, echo=FALSE, message=FALSE}
-source("uvoz/uvoz.r", encoding = "UTF-8")
+source("uvoz/druga_faza.R", encoding = "UTF-8")
 ```
 Z Eurostata sem uvozil podatke o tem koliko ljudi, je v posameznih izbranih državah v letih 2013,2014,2015 končalo diplomski, magistrski in doktorski študij. Podatki so bili v CSV obliki. 
 
