@@ -68,8 +68,14 @@ Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
 
 ```{r razpredelnice}
-kable(head(druzine))
-head(obcine)
+kable(head(BDP))
+head(BDP)
+
+kable(head(Tip_izobrazevanja))
+head(Tip_izobrazevanja)
+
+kable(head(delez.za.izobrazevanje.tidy))
+head(delez.za.izobrazevanje.tidy)
 ```
 
 Slika \ref{fig:histogram} prikazuje porazdelitev števila naselij v občinah.
