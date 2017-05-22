@@ -38,6 +38,11 @@ delez.za.izobrazevanje.tidy <- melt(delez.za.izobrazevanje, id.vars="Drzava", me
 
 colnames(delez.za.izobrazevanje.tidy)<- c("Drzava", "Leto", "delez_BDP_za_izobrazbo")
 
+#tretja_faza_vizualizacija
+
+izbrane_drzave_izo <- Tip_izobrazevanja %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany (until 1990 former territory of the FRG)" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
+izbrane_drzave_stevilo <- stevilo_prebivalcev %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany (until 1990 former territory of the FRG)" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
+
 
 
 
