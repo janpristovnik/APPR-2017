@@ -2,22 +2,16 @@
 library(readr)
 library(dplyr)
 BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni_evrov", "3"),skip=1, na = ":",
-                locale = locale(encoding = "Windows-1250"))
+                locale = locale(encoding = "Windows-1250")) %>% select(Leto, Drzava, Milijoni_evrov)
 
-BDP["1"] <- NULL
-BDP["2"] <- NULL
-BDP["3"] <- NULL
+
 
 
 
 Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja_izobrazbe", "Stevilo_koncanih", "5"),skip=1, na = ":",
-                              locale = locale(grouping_mark = ","))
+                              locale = locale(grouping_mark = ",")) %>% select(Leto, Drzava, Stopnja_izobrazbe, Stevilo_koncanih)
 
-Tip_izobrazevanja["1"] <- NULL
-Tip_izobrazevanja["2"] <- NULL
-Tip_izobrazevanja["3"] <- NULL
-Tip_izobrazevanja["4"] <- NULL
-Tip_izobrazevanja["5"] <- NULL
+
 Tip_izobrazevanja[13:15,2] <- "Germany"
 Tip_izobrazevanja[118:120, 2] <- "Germany"
 Tip_izobrazevanja[223:225, 2] <- "Germany"
