@@ -1,4 +1,5 @@
-
+library(tibble)
+library(dplyr)
 library(readr)
 BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni_evrov", "3"),skip=1, na = ":",
                 locale = locale(encoding = "Windows-1250"))
