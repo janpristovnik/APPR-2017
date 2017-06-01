@@ -1,6 +1,7 @@
 
 library(readr)
 library(dplyr)
+library(tibble)
 BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni_evrov", "3"),skip=1, na = ":",
                 locale = locale(encoding = "Windows-1250")) %>% select(Leto, Drzava, Milijoni_evrov)
 
@@ -49,11 +50,15 @@ colnames(delez.za.izobrazevanje.tidy)<- c("Drzava", "Leto", "delez_BDP_za_izobra
 delez.za.izobrazevanje.tidy$Leto <- parse_number(delez.za.izobrazevanje.tidy$Leto)
 delez.za.izobrazevanje.tidy$delez_BDP_za_izobrazbo <- parse_number(delez.za.izobrazevanje.tidy$delez_BDP_za_izobrazbo)
 
+delez.za.izobrazevanje.tidy$Drzava <- gsub("^Germany.*$", "Germany", delez.za.izobrazevanje.tidy$Drzava)
+
+
+
 #tretja_faza_vizualizacija
 
 izbrane_drzave_izo <- Tip_izobrazevanja %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
 izbrane_drzave_stevilo <- stevilo_prebivalcev %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
-izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany (until 1990 former territory of the FRG)" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
+izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
 izbrane_drzave_izo_vsota <- izbrane_drzave_izo %>% group_by(Leto, Drzava) %>% summarise(Stevilo_koncanih = sum(Stevilo_koncanih))
 zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
 
@@ -64,8 +69,11 @@ prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
   geom_bar(stat = "identity", position = "dodge") +
   xlab("Drzave") + ylab("Stevilo koncanih izobrazb na prebivalca") +
   guides(fill = guide_legend("Leto"))
-drugi_graf <- ggplot(izbrane_drzave_delez_BDP) + aes(x = Drzava, y = delez_BDP_za_izobrazbo) + geom_point()
 
 
 
+drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
+  guides(fill = guide_legend("Leto"))
  
