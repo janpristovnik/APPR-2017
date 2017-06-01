@@ -69,12 +69,49 @@ Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
 ```{r razpredelnice}
 kable(head(BDP))
-head(BDP)
+
 
 kable(head(Tip_izobrazevanja))
-head(Tip_izobrazevanja)
+
 
 kable(head(delez.za.izobrazevanje.tidy))
-head(delez.za.izobrazevanje.tidy)
+
 ```
+
+
+
+
+PRVI GRAF
+```{r}
+prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
+                                  fill = factor(Leto))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  xlab("Drzave") + ylab("Stevilo koncanih izobrazb na prebivalca") +
+  guides(fill = guide_legend("Leto"))
+
+
+```
+
+Prvi graf predstavlja število končanih visokošolskih izobrazb na prebivalca v letih 2013,2014,2015 za izbrane države. Izbral sem visoko razvite države(Nemčija, Švedska), malo manj razvite države (Španija, Italija) v primerjavi s Slovenijo in nam bližnjo Hrvaško. Malto pa sem izbral, ker je zelo majhna država in je imela zelo majhno število končanih visokošloskih izobrazb, zanimalo me je, če se bo ostalim državam približala, ko bom delal primerjavo na prebivalca. 
+
+Ni presenetljivo, da je Švedska prva. Presentljivo je, da je Slovenija druga. Tudi Hrvaška je zelo visoko. Nemčija in Italija pa sta presenetljivo nizko. Malta se ostalim državam ni približala. 
+
+
+
+
+
+DRUGI GRAF
+```{r}
+drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
+  guides(fill = guide_legend("Leto"))
+
+```
+
+Drugi graf predstavlja delež BDP-ja, ki ga izbrane države namenjajo izobrazbi. Žele sem videti, kako močno se to pokaže v številu končanih visokošolskih izobrazb (prvi graf). 
+
+Švedska in Slovenija sta prvi, kar se ujema s prvim grafom. Malta namenja presenetljivo veliko za izobrazbo v primerjavi z drugimi državami, saj je v prvem grafu suvereno najslabša. 
+
+
 
