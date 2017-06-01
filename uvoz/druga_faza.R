@@ -13,10 +13,8 @@ BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava"
 Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja_izobrazbe", "Stevilo_koncanih", "5"),skip=1, na = ":",
                               locale = locale(grouping_mark = ",")) %>% select(Leto, Drzava, Stopnja_izobrazbe, Stevilo_koncanih)
 
+Tip_izobrazevanja$Drzava <- gsub("^Germany.*$", "Germany", Tip_izobrazevanja$Drzava)
 
-Tip_izobrazevanja[13:15,2] <- "Germany"
-Tip_izobrazevanja[118:120, 2] <- "Germany"
-Tip_izobrazevanja[223:225, 2] <- "Germany"
 
 Tip_izobrazevanja$Stevilo_koncanih <- gsub(",", "", Tip_izobrazevanja$Stevilo_koncanih)
 Tip_izobrazevanja$Stevilo_koncanih <- parse_number(Tip_izobrazevanja$Stevilo_koncanih)
@@ -27,9 +25,12 @@ stevilo_prebivalcev <- read_csv("podatki/demo_gind_1_Data.csv", na = ":",
                                 skip = 1, locale = locale(grouping_mark = ",")) %>%
   select(Leto, Drzava, Stevilo_preb)
 
-stevilo_prebivalcev[5,2] <- "Germany"
-stevilo_prebivalcev[57,2] <- "Germany"
-stevilo_prebivalcev[109,2] <- "Germany"
+stevilo_prebivalcev <- subset(stevilo_prebivalcev, Drzava!="Germany (including former GDR)")
+stevilo_prebivalcev$Drzava <- gsub("^Germany.*$", "Germany", stevilo_prebivalcev$Drzava)
+
+
+
+
 
 
 stevilo_prebivalcev$Stevilo_preb <- gsub(",", "", stevilo_prebivalcev$Stevilo_preb)
