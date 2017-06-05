@@ -66,6 +66,9 @@ zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
 
 library(ggplot2)
 library(dplyr)
+library(digest)
+library(maptools)
+
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
   geom_bar(stat = "identity", position = "dodge") +
@@ -79,3 +82,9 @@ drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_
   xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
   guides(fill = guide_legend("Leto"))
  
+evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+                          "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
+  pretvori.zemljevid() %>% filter(continent == "Europe" | sovereignt %in% c("Turkey", "Cyprus"),
+                                  long > -30)
+zemljevid <- ggplot() + geom_polygon(data = evropa, aes(x = long, y = lat, group = group)) +
+  coord_map(xlim = c(-25, 40), ylim = c(32, 72))
