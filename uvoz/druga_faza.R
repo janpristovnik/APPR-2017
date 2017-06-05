@@ -3,6 +3,17 @@ library(dplyr)
 library(readr)
 library(dplyr)
 library(tibble)
+library(ggplot2)
+library(dplyr)
+library(digest)
+library(maptools)
+library(sp)
+library(rvest)
+library(gsubfn)
+library(readr)
+library(dplyr)
+library(XML)
+library(reshape2)
 BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "Milijoni_evrov", "3"),skip=1, na = ":",
                 locale = locale(encoding = "Windows-1250")) %>% select(Leto, Drzava, Milijoni_evrov)
 
@@ -36,13 +47,14 @@ stevilo_prebivalcev$Drzava <- gsub("^Germany.*$", "Germany", stevilo_prebivalcev
 stevilo_prebivalcev$Stevilo_preb <- gsub(",", "", stevilo_prebivalcev$Stevilo_preb)
 stevilo_prebivalcev$Stevilo_preb <- parse_number(stevilo_prebivalcev$Stevilo_preb)
 
-library(rvest)
-library(gsubfn)
-library(readr)
-library(dplyr)
-library(XML)
-library(reshape2)
-library(reshape)
+
+
+
+evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+                          "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
+  pretvori.zemljevid() %>% filter(continent == "Europe" | sovereignt %in% c("Turkey", "Cyprus"),
+                                  long > -30)
+
 delez.za.izobrazevanje <- readHTMLTable("podatki/gov_10a_exp.html", which = 1)
 colnames(delez.za.izobrazevanje) <- c("Drzava", 2013:2015)
 
@@ -66,11 +78,7 @@ izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Ital
 izbrane_drzave_izo_vsota <- izbrane_drzave_izo %>% group_by(Leto, Drzava) %>% summarise(Stevilo_koncanih = sum(Stevilo_koncanih))
 zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
 
-library(ggplot2)
-library(dplyr)
-library(digest)
-library(maptools)
-library(sp)
+
 
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
@@ -85,10 +93,7 @@ drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_
   xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
   guides(fill = guide_legend("Leto"))
  
-evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
-                          "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
-  pretvori.zemljevid() %>% filter(continent == "Europe" | sovereignt %in% c("Turkey", "Cyprus"),
-                                  long > -30)
+
 
 zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("name" = "Drzava"))
 
