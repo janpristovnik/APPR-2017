@@ -53,7 +53,9 @@ delez.za.izobrazevanje.tidy$Leto <- parse_number(delez.za.izobrazevanje.tidy$Let
 delez.za.izobrazevanje.tidy$delez_BDP_za_izobrazbo <- parse_number(delez.za.izobrazevanje.tidy$delez_BDP_za_izobrazbo)
 
 delez.za.izobrazevanje.tidy$Drzava <- gsub("^Germany.*$", "Germany", delez.za.izobrazevanje.tidy$Drzava)
-
+delez.za.izobrazevanje.tidy$Drzava <- gsub("Czech Republic", "Czech Rep.",
+                                           delez.za.izobrazevanje.tidy$Drzava) %>%
+  parse_factor(levels(evropa$name))
 
 
 #tretja_faza_vizualizacija
@@ -90,6 +92,6 @@ evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturaleart
 
 zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("name" = "Drzava"))
 
-zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = "delez_BDP_za_izobrazbo")) +
+zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
