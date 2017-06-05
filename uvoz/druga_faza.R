@@ -86,5 +86,6 @@ evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturaleart
                           "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
   pretvori.zemljevid() %>% filter(continent == "Europe" | sovereignt %in% c("Turkey", "Cyprus"),
                                   long > -30)
-zemljevid <- ggplot() + geom_polygon(data = evropa, aes(x = long, y = lat, group = group)) +
+
+zemljevid <- ggplot() + geom_polygon(data = left_join(evropa, delez.za.izobrazevanje.tidy, by = c("name" = "Drzava")), aes(x = long, y = lat, group = group, fill = "delez_BDP_za_izobrazbo")) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
