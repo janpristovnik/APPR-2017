@@ -77,3 +77,4 @@ pretvori.zemljevid <- function(zemljevid) {
   data$id <- as.character(0:(nrow(data)-1))
   return(inner_join(fo, data, by="id"))
 }
+

@@ -68,6 +68,7 @@ library(ggplot2)
 library(dplyr)
 library(digest)
 library(maptools)
+library(sp)
 
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
