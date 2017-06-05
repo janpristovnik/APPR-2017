@@ -27,7 +27,7 @@ Za temo sem si izbral visokošolstvo med izbranimi državami. Cilj projekta je d
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE, message=FALSE}
+```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE}
 source("uvoz/druga_faza.R", encoding = "UTF-8")
 ```
 Z Eurostata sem uvozil podatke o tem koliko ljudi, je v posameznih izbranih državah v letih 2013,2014,2015 končalo diplomski, magistrski in doktorski študij. Podatki so bili v CSV obliki. 
@@ -83,12 +83,7 @@ kable(head(delez.za.izobrazevanje.tidy))
 
 PRVI GRAF
 ```{r}
-prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
-                                  fill = factor(Leto))) +
-  geom_bar(stat = "identity", position = "dodge") +
-  xlab("Drzave") + ylab("Stevilo koncanih izobrazb na prebivalca") +
-  guides(fill = guide_legend("Leto"))
-
+print(prvi_graf)
 
 ```
 
@@ -102,10 +97,7 @@ Ni presenetljivo, da je Švedska prva. Presentljivo je, da je Slovenija druga. T
 
 DRUGI GRAF
 ```{r}
-drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
-  geom_bar(stat = "identity", position = "dodge") +
-  xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
-  guides(fill = guide_legend("Leto"))
+print(drugi_graf)
 
 ```
 
