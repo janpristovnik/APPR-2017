@@ -99,11 +99,17 @@ DRUGI GRAF
 ```{r}
 print(drugi_graf)
 
+
 ```
 
-Drugi graf predstavlja delež BDP-ja, ki ga izbrane države namenjajo izobrazbi. Žele sem videti, kako močno se to pokaže v številu končanih visokošolskih izobrazb (prvi graf). 
+Drugi graf predstavlja delež BDP-ja, ki ga izbrane države namenjajo izobrazbi. Želel sem videti, kako močno se to pokaže v številu končanih visokošolskih izobrazb (prvi graf). 
 
 Švedska in Slovenija sta prvi, kar se ujema s prvim grafom. Malta namenja presenetljivo veliko za izobrazbo v primerjavi z drugimi državami, saj je v prvem grafu suvereno najslabša. 
 
+ZEMLJEVID
+```{r}
+print(zemljevid)
+```
 
+Za boljšo predstavo in ponazoritev, katere države, naj bi največji delež BDPja namenjale šolstvu, sem naredil zemljevid, ki prikazuje prav to. 
 
