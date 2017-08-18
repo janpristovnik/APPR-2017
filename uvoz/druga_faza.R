@@ -77,8 +77,10 @@ izbrane_drzave_stevilo <- stevilo_prebivalcev %>% filter(Drzava=="Italy" | Drzav
 izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
 izbrane_drzave_izo_vsota <- izbrane_drzave_izo %>% group_by(Leto, Drzava) %>% summarise(Stevilo_koncanih = sum(Stevilo_koncanih))
 zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
-
-
+izbrane_drzave_za_tretji_graf <- delez.za.izobrazevanje.tidy %>% filter(Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" )
+izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
+izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
+zdruzeno_tretji_graf <- left_join(izbrane_drzave_izo_tretji_graf, izbrane_drzave_stevilo_tretji_graf)
 
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
