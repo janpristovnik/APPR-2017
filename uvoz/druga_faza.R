@@ -77,6 +77,7 @@ izbrane_drzave_stevilo <- stevilo_prebivalcev %>% filter(Drzava=="Italy" | Drzav
 izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Italy" | Drzava =="Spain" | Drzava == "Germany" | Drzava == "Malta" | Drzava =="Slovenia" | Drzava == "Croatia"| Drzava == "Sweden" )
 izbrane_drzave_izo_vsota <- izbrane_drzave_izo %>% group_by(Leto, Drzava) %>% summarise(Stevilo_koncanih = sum(Stevilo_koncanih))
 zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
+
 izbrane_drzave_za_tretji_graf <- delez.za.izobrazevanje.tidy %>% filter(Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" )
 izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
 izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
@@ -90,10 +91,15 @@ prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
 
 
 
+
 drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
   geom_bar(stat = "identity", position = "dodge") +
   xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
   guides(fill = guide_legend("Leto"))
+
+tretji_graf <- ggplot(zdruzeno_tretji_graf %>% filter(Leto == 2015),
+                      aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb, fill = Stopnja_izobrazbe)) +
+  geom_col(position = "dodge")
  
 
 
