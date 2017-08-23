@@ -78,9 +78,9 @@ izbrane_drzave_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Ital
 izbrane_drzave_izo_vsota <- izbrane_drzave_izo %>% group_by(Leto, Drzava) %>% summarise(Stevilo_koncanih = sum(Stevilo_koncanih))
 zdruzeno <- left_join(izbrane_drzave_izo_vsota, izbrane_drzave_stevilo)
 
-izbrane_drzave_za_tretji_graf <- delez.za.izobrazevanje.tidy %>% filter(Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" )
-izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
-izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium")
+izbrane_drzave_za_tretji_graf <- delez.za.izobrazevanje.tidy %>% filter(Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" | Drzava == "Romania" | Drzava == "Bulgaria" | Drzava == "Slovakia")
+izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium"| Drzava == "Romania" | Drzava == "Bulgaria" | Drzava == "Slovakia")
+izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" | Drzava == "Romania" | Drzava == "Bulgaria" | Drzava == "Slovakia")
 zdruzeno_tretji_graf <- left_join(izbrane_drzave_izo_tretji_graf, izbrane_drzave_stevilo_tretji_graf)
 
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
@@ -108,3 +108,49 @@ zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("nam
 zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
+library(shiny)
+
+shinyUI( fluidPage(
+  sidebarLayout(
+    sidebarPanel("Število končanih visokošolskih izobrazb za izbrane države v izbranih letih"),
+    mainPanel()
+  ),
+  
+  selectInput( inputId = "Drzava",
+               label = "Država",
+               choices = unique(zdruzeno_tretji_graf$Drzava),
+               selected = FALSE,
+               multiple = TRUE
+  ),
+  selectInput(inputId = "Leto",
+              label = "Leto",
+              choices = unique(zdruzeno_tretji_graf$Leto),
+              selected = FALSE,
+              multiple = FALSE
+  ),
+  
+  radioButtons(inputId = "vrsta",
+               label = "Stopnja izobrazbe",
+               choices = list("Diploma",
+                              "Magisterij",
+                              "Doktorat")),
+               
+               
+ plotOutput("lin")
+  ))
+
+shinyServer(function(input,output) {
+  output$lin <- renderPlot({
+    data <- filter(zdruzeno_tretji_graf,
+                   Drzava == input$Drzava,
+                   Leto == input$Leto,
+                   Vrsta == input$vrsta
+                   
+      
+    )
+  })
+}
+  
+  )
+
+  
