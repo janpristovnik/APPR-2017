@@ -1,24 +1,22 @@
 library(shiny)
 
 shinyUI( fluidPage(
-  sidebarLayout(
-    sidebarPanel("Število končanih visokošolskih izobrazb za izbrane države v izbranih letih"),
-    mainPanel()
-  ),
   
-  selectInput( inputId = "Drzava",
+    titlePanel("Število končanih visokošolskih izobrazb za izbrane države v izbranih letih")
+  ,
+  
+  selectInput( inputId = "drzava",
                label = "Država",
                choices = unique(zdruzeno_tretji_graf$Drzava),
-               selected = FALSE,
+               
                multiple = TRUE
   ),
-  selectInput(inputId = "Leto",
+  selectInput(inputId = "leto",
               label = "Leto",
               choices = unique(zdruzeno_tretji_graf$Leto),
-              selected = FALSE,
+              
               multiple = FALSE
   ),
-  
   
   
   

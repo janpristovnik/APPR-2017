@@ -20,7 +20,7 @@ BDP <- read_csv("podatki/nama_10_gdp_1_Data.csv", col_names = c("Leto", "Drzava"
 
 
 
-
+#uvoz podatkov in urejanje podatkov
 Tip_izobrazevanja <- read_csv("podatki/educ_uoe_enra01_1_Data.csv", col_names = c("Leto", "Drzava", "1", "2", "3", "4", "Stopnja_izobrazbe", "Stevilo_koncanih", "5"),skip=1, na = ":",
                               locale = locale(grouping_mark = ",")) %>% select(Leto, Drzava, Stopnja_izobrazbe, Stevilo_koncanih)
 
@@ -49,12 +49,14 @@ stevilo_prebivalcev$Stevilo_preb <- parse_number(stevilo_prebivalcev$Stevilo_pre
 
 
 
-
+#uvou podatkov za zemljevid
 evropa <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
                           "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
   pretvori.zemljevid() %>% filter(continent == "Europe" | sovereignt %in% c("Turkey", "Cyprus"),
                                   long > -30)
 
+
+#urejanje podatkov
 delez.za.izobrazevanje <- readHTMLTable("podatki/gov_10a_exp.html", which = 1)
 colnames(delez.za.izobrazevanje) <- c("Drzava", 2013:2015)
 
@@ -83,6 +85,9 @@ izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Icela
 izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" | Drzava == "Romania" | Drzava == "Bulgaria" | Drzava == "Slovakia")
 zdruzeno_tretji_graf <- left_join(izbrane_drzave_izo_tretji_graf, izbrane_drzave_stevilo_tretji_graf)
 
+
+
+#grafi
 prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
   geom_bar(stat = "identity", position = "dodge") +
@@ -101,7 +106,7 @@ tretji_graf <- ggplot(zdruzeno_tretji_graf %>% filter(Leto == 2015),
                       aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb, fill = Stopnja_izobrazbe)) +
   geom_col(position = "dodge")
  
-
+#zemljevid 
 
 zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("name" = "Drzava"))
 
