@@ -113,49 +113,6 @@ zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("nam
 zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
-library(shiny)
 
-shinyUI( fluidPage(
-  sidebarLayout(
-    sidebarPanel("Število končanih visokošolskih izobrazb za izbrane države v izbranih letih"),
-    mainPanel()
-  ),
-  
-  selectInput( inputId = "Drzava",
-               label = "Država",
-               choices = unique(zdruzeno_tretji_graf$Drzava),
-               selected = FALSE,
-               multiple = TRUE
-  ),
-  selectInput(inputId = "Leto",
-              label = "Leto",
-              choices = unique(zdruzeno_tretji_graf$Leto),
-              selected = FALSE,
-              multiple = FALSE
-  ),
-  
- 
-               
-               
- plotOutput("lin")
-  ))
-
-shinyServer(function(input,output) {
-  output$lin <- renderPlot({
-    data <- filter(zdruzeno_tretji_graf,
-                   Drzava == input$Drzava,
-                   Leto == input$Leto
-                   
-                    
-                   
-      
-    )
-    
-    g3 <- ggplot(data, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb, fill = Stopnja_izobrazbe))+ +
-      geom_col(position = "dodge")
-  })
-}
-  
-  )
 
   
