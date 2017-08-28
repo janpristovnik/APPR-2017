@@ -113,6 +113,16 @@ zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("nam
 zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
+#napredna analiza -> poudarek na doktorskem študiju
+
+izbrane_drzave_napredna_analiza_izo_dr <- izbrane_drzave_izo_tretji_graf %>% filter(Stopnja_izobrazbe == "Doctoral or equivalent level" )
+izbrane_drzave_napredna_analiza_izo_dip <- izbrane_drzave_izo_tretji_graf %>% filter(Stopnja_izobrazbe == "Bachelor's or equivalent level" )
+izbrane_drzave_napredna_analiza_stevilo <- izbrane_drzave_stevilo_tretji_graf 
+zdruzeno_napredna_analiza_dr <- left_join(izbrane_drzave_napredna_analiza_izo_dr, izbrane_drzave_napredna_analiza_stevilo)
+zdruzeno_napredna_analiza_dip <- left_join(izbrane_drzave_napredna_analiza_izo_dip, izbrane_drzave_napredna_analiza_stevilo)
+izbrane_drzave_napredna_analiza_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Belgium" | Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Slovakia" | Drzava == "Bulgaria" | Drzava == "Romania")
+
+
 
 
   

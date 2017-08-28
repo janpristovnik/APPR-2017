@@ -113,3 +113,16 @@ print(zemljevid)
 
 Za boljšo predstavo in ponazoritev, katere države, naj bi največji delež BDPja namenjale šolstvu, sem naredil zemljevid, ki prikazuje prav to. 
 
+
+```{r shiny, echo = FALSE}
+    shinyAppDir("shiny", options=list(width="100%", height=600))
+```
+
+Hotel sem primerjati države, ki največji delež BDP-ja namenjajo šolstvu med seboj in tudi s tistimi državami, ki šolstvu namenjajo najmanjši delež. Izbral sem šest držav ( tri z največjim in tri z najmanjšim deležem) ter leta 2013,2014,2015. 
+
+Ko sem primerjal Iceland, Denmark in Belgium nisem opazil nobenih posebnih/neobičajnih trendov v letih 2013,2014 in 2015 za podatke o magisterjskem in diplomskem študiju. Največji delež je šolstvu namenjala Iceland in imela zato tudi največje število končanih visokošolskih študijev ne prebivalca( na teh dveh  področjih - diploma, magisterij). Edina opazka vredna omembe je morda, da je bila Iceland skozi izbrana leta skoraj konstantna po številu končanih študijev, Denmark in Belgium pa je število končanih študijev skozi leta naraščalo. Opazil pa sem, da je število končanih doktorskih študijev v manjši korelaciji z deležem BDP-ja namenjenem šolstvu. Saj je bilo število končanih doktorskih študijev na prebivalca večinsko najmanjše prav pri Iceland. 
+
+Ko sem primerjal Romanio, Bulgario in Slovakio zopet nisem opazil nobenih posebnih/neobičajnih trendov pri diplomah in magisterijih. Romania je šolstvu namenjala najmanjši delež BDP-pja, zato je skozi izbrana leta imela najmanjše število končanih diplomskih in magisterjskih študijev na prebivalca. Ponovno pa sem opazil odstopanja od predpostavke( predpostavka -> večji kot bo delež BDP-ja namenjen šolstvu, večje bo število končanih visokošolskih programov) pri doktorskem študiju. Kot rečeno je Romania šolstvu namenjala najmanjši delež med izbranimi državami, imela pa je skozi vsa tri leta več končanih doktorskih študijev na prebivalca kot Bulgaria, ki je šolstvu namenjala več denarja. 
+
+Nato sem primerjal vse države med sabo, skozi vsa leta. Pri diplomskih študijih, je tako, kot bi človek pričakoval, države z večjim deležem denarja namenjenem šolstvu so imele večje število končanih diplomskih študijev na prebivalca. Pri magisterjskih in doktorskih študijih pa ni bilo nobene prave korelacije med denarjem namenjenem šolstvu in končanimi magisterjskimi in doktorskimi programi na prebivalca. Belgija je imela vsa leta manjše število končanih magisterjskih nalog na prebivalca v primerjavi z Bulgario in Slovakio. Leta 2013 in 2014 je prav tako imela Denmark manjše število magisterjskih nalog na prebivalca v primerjavi s Slovakio. Leta 2013 pa sta imeli tako Denmark,Belgium in Iceland manjše število končanih doktorskih nalog na prebivalca kot Slovakia. 
+
