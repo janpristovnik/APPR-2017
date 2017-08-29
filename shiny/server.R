@@ -2,6 +2,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 shinyServer(function(input,output) {
+  
   output$lin <- renderPlot({
     
     data <- zdruzeno_tretji_graf %>% filter(Drzava %in% input$drzava, Leto == input$leto)

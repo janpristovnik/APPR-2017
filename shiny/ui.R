@@ -5,6 +5,7 @@ shinyUI( fluidPage(
     titlePanel("Število končanih visokošolskih izobrazb za izbrane države v izbranih letih")
   ,
   
+  
   selectInput( inputId = "drzava",
                label = "Država",
                choices = unique(zdruzeno_tretji_graf$Drzava),

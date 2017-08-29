@@ -85,10 +85,18 @@ izbrane_drzave_izo_tretji_graf <- Tip_izobrazevanja %>% filter( Drzava == "Icela
 izbrane_drzave_stevilo_tretji_graf <- stevilo_prebivalcev %>% filter( Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Belgium" | Drzava == "Romania" | Drzava == "Bulgaria" | Drzava == "Slovakia")
 zdruzeno_tretji_graf <- left_join(izbrane_drzave_izo_tretji_graf, izbrane_drzave_stevilo_tretji_graf)
 
-
+izbrane_drzave_delez_BDP$Drzava <- as.character(izbrane_drzave_delez_BDP$Drzava)
 
 #grafi
-prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
+
+slovar_prvi <- c("Croatia" = "Hrvaška",
+            "Germany" = "Nemčija",
+            "Italy" = "Italija",
+            "Malta" = "Malta",
+            "Slovenia" = "Slovenija",
+            "Spain" = "Španija",
+            "Sweden" = "Švedska")
+prvi_graf <- ggplot(zdruzeno, aes(x = slovar_prvi[Drzava], y = Stevilo_koncanih/Stevilo_preb,
                                   fill = factor(Leto))) +
   geom_bar(stat = "identity", position = "dodge") +
   xlab("Drzave") + ylab("Stevilo koncanih izobrazb na prebivalca") +
@@ -97,14 +105,25 @@ prvi_graf <- ggplot(zdruzeno, aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb,
 
 
 
-drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = Drzava, y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
+drugi_graf <- ggplot(izbrane_drzave_delez_BDP, aes(x = slovar_prvi[Drzava], y = delez_BDP_za_izobrazbo, fill = factor(Leto))) +
   geom_bar(stat = "identity", position = "dodge") +
   xlab("Drzave") + ylab("delez BDPja namenjen izobrazbi") +
   guides(fill = guide_legend("Leto"))
 
+slovar_drugi <- c("Belgium" = "Belgija",
+            "Bulgaria" = "Bolgarija",
+            "Denmark" = "Danska",
+            "Iceland" = "Islandija",
+            "Romania" = "Romunija",
+            "Slovakia" = "Slovaška")
+stopnje <- c("Bachelor's or equivalent level" = "Diplomski študij",
+             "Master's or equivalent level" = "Magistrski študij",
+             "Doctoral or equivalent level" = "Doktorski študij")
+stopnje <- factor(stopnje, levels = stopnje, ordered = TRUE)
+
 tretji_graf <- ggplot(zdruzeno_tretji_graf %>% filter(Leto == 2015),
-                      aes(x = Drzava, y = Stevilo_koncanih/Stevilo_preb, fill = Stopnja_izobrazbe)) +
-  geom_col(position = "dodge")
+                      aes(x = slovar_drugi[Drzava], y = Stevilo_koncanih/Stevilo_preb, fill = stopnje[Stopnja_izobrazbe])) +
+  geom_col(position = "dodge") + xlab("Drzave") + ylab("Stevilo končanih / Stevilo prebivalcev") + guides(fill = guide_legend("Stopnja izobrazbe"))
  
 #zemljevid 
 
@@ -113,7 +132,7 @@ zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("nam
 zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
   coord_map(xlim = c(-25, 40), ylim = c(32, 72))
 
-#napredna analiza -> poudarek na doktorskem študiju
+#napredna analiza
 
 izbrane_drzave_napredna_analiza_izo_dr <- izbrane_drzave_izo_tretji_graf %>% filter(Stopnja_izobrazbe == "Doctoral or equivalent level" )
 izbrane_drzave_napredna_analiza_izo_dip <- izbrane_drzave_izo_tretji_graf %>% filter(Stopnja_izobrazbe == "Bachelor's or equivalent level" )
@@ -122,7 +141,22 @@ zdruzeno_napredna_analiza_dr <- left_join(izbrane_drzave_napredna_analiza_izo_dr
 zdruzeno_napredna_analiza_dip <- left_join(izbrane_drzave_napredna_analiza_izo_dip, izbrane_drzave_napredna_analiza_stevilo)
 izbrane_drzave_napredna_analiza_delez_BDP <- delez.za.izobrazevanje.tidy %>% filter(Drzava=="Belgium" | Drzava == "Iceland" | Drzava == "Denmark" | Drzava == "Slovakia" | Drzava == "Bulgaria" | Drzava == "Romania")
 
+slovar <- c("Belgium" = "Belgija",
+            "Bulgaria" = "Bolgarija",
+            "Denmark" = "Danska",
+            "Iceland" = "Islandija",
+            "Romania" = "Romunija",
+            "Slovakia" = "Slovaška")
+cetrti_graf <- ggplot(inner_join(zdruzeno_napredna_analiza_dr,
+                  izbrane_drzave_napredna_analiza_delez_BDP) %>% filter(Leto == 2013),
+       aes(x = slovar[Drzava], y = Stevilo_koncanih/Stevilo_preb, fill = delez_BDP_za_izobrazbo)) +
+  geom_col() + xlab("Država") + ylab("Število doktoratov na prebivalca") +
+  guides(fill = guide_colorbar("Delež BDP za izobrazbo"))
 
 
-
+peti_graf <- ggplot(inner_join(zdruzeno_napredna_analiza_dip,
+                                 izbrane_drzave_napredna_analiza_delez_BDP) %>% filter(Leto == 2014),
+                      aes(x = slovar[Drzava], y = Stevilo_koncanih/Stevilo_preb, fill = delez_BDP_za_izobrazbo)) +
+  geom_col() + xlab("Država") + ylab("Število diplom na prebivalca") +
+  guides(fill = guide_colorbar("Delež BDP za izobrazbo"))
   
