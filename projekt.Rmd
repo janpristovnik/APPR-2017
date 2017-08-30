@@ -67,7 +67,7 @@ Tabela v urejeni obliki je sestavljena iz 3 stolpcev.
 
 
 
-```{r razpredelnice}
+```{r razpredelnice, echo=FALSE}
 
 
 kable(head(delez.za.izobrazevanje.tidy))
@@ -78,7 +78,7 @@ kable(head(delez.za.izobrazevanje.tidy))
 # Analiza podatkov
 
 PRVI GRAF
-```{r}
+```{r, echo=FALSE}
 print(prvi_graf)
 
 ```
@@ -92,7 +92,7 @@ Ni presenetljivo, da je Švedska prva. Presentljivo je, da je Slovenija druga. T
 
 
 DRUGI GRAF
-```{r}
+```{r, echo = FALSE}
 print(drugi_graf)
 
 
@@ -103,7 +103,7 @@ Drugi graf predstavlja delež BDP-ja, ki ga izbrane države namenjajo izobrazbi.
 Švedska in Slovenija sta prvi, kar se ujema s prvim grafom. Malta namenja presenetljivo veliko za izobrazbo v primerjavi z drugimi državami, saj je v prvem grafu suvereno najslabša. 
 
 ZEMLJEVID
-```{r}
+```{r, echo = FALSE}
 print(zemljevid)
 ```
 
@@ -124,7 +124,9 @@ Ko sem primerjal Romunijo, Bolgarijo in Slovaško zopet nisem opazil nobenih pos
 
 Nato sem primerjal vse države med sabo, skozi vsa leta. Pri diplomskih študijih, je tako, kot bi človek pričakoval, države z večjim deležem denarja namenjenem šolstvu, so imele večje število končanih diplomskih študijev na prebivalca. Pri magisterjskih in doktorskih študijih pa ni bilo nobene prave korelacije med denarjem namenjenem šolstvu in končanimi magisterjskimi in doktorskimi programi na prebivalca. Belgija je imela vsa leta manjše število končanih magisterjskih nalog na prebivalca v primerjavi z Bolgarijo in Slovaško. Leta 2013 in 2014 je prav tako imela Danska manjše število magisterjskih nalog na prebivalca v primerjavi s Slovaško. Za boljšo pregled končanih doktorskih študijev sem naredil dodaten spodnji graf.
 
-```{r}
+
+TRETJI GRAF
+```{r, echo = FALSE}
 print(cetrti_graf)
 ```
 
@@ -133,7 +135,9 @@ Na x-osi imamo države, na y-osi imamo število doktoratov na prebivalca, izbran
 
 Moja predpostavka je bila, da večji delež kot država namenja BDP-ju, večje bo število končanih vseh študijskih programov na prebivalca. Kot sem komentiral zgoraj, lahko vidimo odstopanja pri magisterjskih in doktorskih študijih, za diplomska pa velja. Spodnji graf prikazuje število končanih diplomskih študijev na prebivalca. Tak graf sem pričakoval pri vseh študijskih stopnjah.
 
-```{r}
+
+ČETRTI GRAF
+```{r, echo = FALSE}
 print(peti_graf)
 ```
 
@@ -141,5 +145,5 @@ print(peti_graf)
 
 #Zaključek
 
-V mojem projektu sem ključno povezavo iskal med % BDP-ja, ki ga država namenja za šolstvo in številom različnih končanih visokošolskih študijev na prebivalca. Predpostavka ( večji kot bo delež namenjen šolstvu, večje bo številu končanih študijev na prebivalca) je bila potrjena samo za diplomske študije. Pri magisterjskih in doktorskih študijih je prišlo do večjih odstopanj. Mogoče bi odstopanja zmanjšal, če bi delal analizo na večih državah in poiskal še druge faktorje, ki so lahko povzročila ta odstopanja v posameznih državah (državne krize, novi zakoni,..). Problem vidim tudi v tem, da država ne more vplivati na kratek rok na šolstvo -> če bodo danes dali ogromno denarja v šolstvo, morda sprememb nebo vidnih še 5,10 let itd, česar nisem mogel analizirati, saj sem dobil podatke samo za tri leta. Drugi sklep je, da država lahko bolj vpliva na diplomske študije kot magisterjske in doktorske, saj so sledeči bolj odvisni od posameznika samega ( zahtevajo dodaten trud in več let). Država lahko samo izboljša pogoje za študiranje, ne more študirati namesto študenotov. 
+V mojem projektu sem ključno povezavo iskal med % BDP-ja, ki ga država namenja za šolstvo in številom različnih končanih visokošolskih študijev na prebivalca. Predpostavka ( večji kot bo delež namenjen šolstvu, večje bo številu končanih študijev na prebivalca) je bila potrjena samo za diplomske študije. Pri magisterjskih in doktorskih študijih je prišlo do večjih odstopanj. Mogoče bi odstopanja zmanjšal, če bi delal analizo na večih državah in poiskal še druge faktorje, ki so lahko povzročila ta odstopanja v posameznih državah (državne krize, novi zakoni,..). Problem vidim tudi v tem, da država ne more vplivati na kratek rok na šolstvo -> če bodo danes dali ogromno denarja v šolstvo, morda sprememb nebo vidnih še 5,10 let itd, česar nisem mogel analizirati, saj sem dobil podatke samo za tri leta. Drugi sklep je, da država lahko bolj vpliva na diplomske študije kot magisterjske in doktorske, saj so sledeči bolj odvisni od posameznika samega ( zahtevajo dodaten trud in več let). Država lahko samo izboljša pogoje za študiranje, ne more študirati namesto študentov. 
 

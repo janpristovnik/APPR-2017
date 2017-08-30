@@ -130,7 +130,8 @@ tretji_graf <- ggplot(zdruzeno_tretji_graf %>% filter(Leto == 2015),
 zdruzena_zemljevid <- left_join(evropa, delez.za.izobrazevanje.tidy, by = c("name" = "Drzava"))
 
 zemljevid <- ggplot() + geom_polygon(data = zdruzena_zemljevid, aes(x = long, y = lat, group = group, fill = delez_BDP_za_izobrazbo)) +
-  coord_map(xlim = c(-25, 40), ylim = c(32, 72))
+  coord_map(xlim = c(-25, 40), ylim = c(32, 72)) + guides(fill = guide_legend("Delež BDP-ja za izobrazbo"))
+
 
 #napredna analiza
 
@@ -151,12 +152,12 @@ cetrti_graf <- ggplot(inner_join(zdruzeno_napredna_analiza_dr,
                   izbrane_drzave_napredna_analiza_delez_BDP) %>% filter(Leto == 2013),
        aes(x = slovar[Drzava], y = Stevilo_koncanih/Stevilo_preb, fill = delez_BDP_za_izobrazbo)) +
   geom_col() + xlab("Država") + ylab("Število doktoratov na prebivalca") +
-  guides(fill = guide_colorbar("Delež BDP za izobrazbo"))
+  guides(fill = guide_colorbar("Delež BDP-ja za izobrazbo"))
 
 
 peti_graf <- ggplot(inner_join(zdruzeno_napredna_analiza_dip,
                                  izbrane_drzave_napredna_analiza_delez_BDP) %>% filter(Leto == 2014),
                       aes(x = slovar[Drzava], y = Stevilo_koncanih/Stevilo_preb, fill = delez_BDP_za_izobrazbo)) +
   geom_col() + xlab("Država") + ylab("Število diplom na prebivalca") +
-  guides(fill = guide_colorbar("Delež BDP za izobrazbo"))
+  guides(fill = guide_colorbar("Delež BDP-ja za izobrazbo"))
   
